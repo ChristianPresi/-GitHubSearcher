@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ifO-Tm-dtK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="9h8-TN-aDA">
+            <objects>
+                <navigationController id="ifO-Tm-dtK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HMr-Ey-tbl">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fYD-EO-OCF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SON-3c-ltg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1223" y="227"/>
+        </scene>
+        <!--Github Profile SearchVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController id="BYZ-38-t0r" customClass="GithubProfileSearchVC" customModule="GithubSearcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fJu-Nf-Vve">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6f9-Z7-zpQ">
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="Bhe-zD-qa0">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bhe-zD-qa0" id="vlG-OJ-5Ke">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3CO-cH-BBh">
+                                                    <rect key="frame" x="10" y="6" width="90" height="87.5"/>
+                                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="90" id="R1B-hV-uYA"/>
+                                                        <constraint firstAttribute="width" constant="90" id="dge-VE-gT6"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFt-Pu-CCg">
+                                                    <rect key="frame" x="110" y="39.5" width="82" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 repos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGP-mp-4Wj">
+                                                    <rect key="frame" x="332" y="41" width="52" height="18"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3CO-cH-BBh" firstAttribute="leading" secondItem="vlG-OJ-5Ke" secondAttribute="leading" constant="10" id="JRD-jy-Dvu"/>
+                                                <constraint firstItem="3CO-cH-BBh" firstAttribute="centerY" secondItem="vlG-OJ-5Ke" secondAttribute="centerY" id="PZr-NZ-BiN"/>
+                                                <constraint firstItem="TFt-Pu-CCg" firstAttribute="centerY" secondItem="vlG-OJ-5Ke" secondAttribute="centerY" id="blX-p0-CZe"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AGP-mp-4Wj" secondAttribute="trailing" constant="10" id="kbZ-ek-ZLC"/>
+                                                <constraint firstItem="AGP-mp-4Wj" firstAttribute="centerY" secondItem="vlG-OJ-5Ke" secondAttribute="centerY" id="ugC-5n-uIL"/>
+                                                <constraint firstItem="TFt-Pu-CCg" firstAttribute="leading" secondItem="3CO-cH-BBh" secondAttribute="trailing" constant="10" id="zjm-q9-wBv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fJu-Nf-Vve" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="04W-DX-7aW"/>
+                            <constraint firstItem="6f9-Z7-zpQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Agn-aR-YTW"/>
+                            <constraint firstItem="fJu-Nf-Vve" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="FxC-kP-mF8"/>
+                            <constraint firstAttribute="bottom" secondItem="6f9-Z7-zpQ" secondAttribute="bottom" id="NIj-md-6vr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6f9-Z7-zpQ" secondAttribute="trailing" id="Ne1-yP-nXv"/>
+                            <constraint firstItem="fJu-Nf-Vve" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xm2-TI-0Xd"/>
+                            <constraint firstItem="6f9-Z7-zpQ" firstAttribute="top" secondItem="fJu-Nf-Vve" secondAttribute="bottom" id="dW7-Hw-idb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Ks-79-QIF"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-342.02898550724638" y="225.66964285714283"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="person.crop.square.fill" catalog="system" width="128" height="114"/>
+    </resources>
+</document>
