@@ -28,12 +28,13 @@ final class GithubProfileSearchVC: UIViewController {
         return aiv
     }()
     private let viewModel = GithubProfileSearchViewModel()
-    private var partialUsersSubscription: Cancellable?
 
+    private var subscriptions = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Github users"
+        self.title = "Github searcher"
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
         searchBar.searchTextField.delegate = self
@@ -43,7 +44,7 @@ final class GithubProfileSearchVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        partialUsersSubscription = viewModel.hasUpdated
+        viewModel.hasUpdated
             .dropFirst(1)
             .sink(receiveValue: {[weak self] updated in
                 guard let self = self else {
@@ -61,6 +62,7 @@ final class GithubProfileSearchVC: UIViewController {
                 
                 self.activityIndicator.stopAnimating()
             })
+            .store(in: &subscriptions)
     }
 }
 
@@ -105,5 +107,23 @@ extension GithubProfileSearchVC: UITableViewDelegate {
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        viewModel.getUser(at: indexPath.row)
+            .sink(receiveCompletion: {
+                if case .failure = $0 {
+                    print($0)
+                }
+            }, receiveValue: {
+                    let detailsViewModel = UserDetailsViewModel(user: $0)
+                    
+                    let detailsVC = self.storyboard?.instantiateViewController(withIdentifier: "UserDetailsVCID") as! UserDetailsVC
+                    
+                    detailsVC.setupWith(viewModel: detailsViewModel)
+                    
+                    self.navigationController?.pushViewController(detailsVC, animated: true)
+            })
+            .store(in: &subscriptions)
+    }
 }
