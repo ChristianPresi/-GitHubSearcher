@@ -8,11 +8,26 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
+    static let decoder: JSONDecoder = {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        
+        let dec = JSONDecoder()
+        dec.dateDecodingStrategy = .formatted(df)
+
+        return dec
+    }()
+
+    
     var login: String
-    var avatarTxt: String
-    var reposCount: Int
-    var followersCount: Int
+    var avatar_url: String
+    var public_repos: Int?
+    var followers: Int
+    var following: Int
+    var email: String?
+    var location: String?
+    var created_at: Date
 }
 
 

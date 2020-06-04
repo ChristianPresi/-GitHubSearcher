@@ -97,11 +97,13 @@ extension GithubProfileSearchVC: UITableViewDataSource {
 //MARK: - UITableviewDelegate
 extension GithubProfileSearchVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GithubUserCellID", for: indexPath) as! GithubUserCell
+        let futureUser = viewModel.getUser(at: indexPath.row)
         
-        cell.setup(with: viewModel.partialUsers[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GithubUserCellID", for: indexPath) as! GithubUserCell
+        cell.setup(with: futureUser)
         
         return cell
     }
+    
 
 }

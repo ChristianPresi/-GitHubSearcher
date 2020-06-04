@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import Alamofire
 
 final class GithubProfileSearchViewModel {
     var searchTermText: String = "" {
@@ -22,7 +23,7 @@ final class GithubProfileSearchViewModel {
 
     var hasUpdated = CurrentValueSubject<Bool, Never>(false)
     
-    var partialUsers = [SearchUsersResponse.PartialUser]()
+    private var partialUsers = [SearchUsersResponse.PartialUser]()
     
     private var searchTermChangesSubject = PassthroughSubject<String, Never>()
     private var serchTermChangesSubscription: Cancellable?
@@ -46,7 +47,7 @@ final class GithubProfileSearchViewModel {
                 self.oldAPISearchSubscription = GithubSearcherAPI.shared.searchUsersBy(term: $0)
                     .sink(receiveCompletion: {
                         if case .failure = $0 {
-                            print($0)
+                            print("searching users...", $0)
                         }
                     },
                           receiveValue: {
@@ -54,6 +55,12 @@ final class GithubProfileSearchViewModel {
                             self.hasUpdated.value = true
                     })
             })
+    }
+    
+    func getUser(at index: Int) -> Future<User, Error> {
+        let loginID = partialUsers[index].login
+        
+        return GithubSearcherAPI.shared.fetchUserDetailsBy(loginID: loginID)
     }
     
     private func trimExtraTrailingWhiteSpaces(of string: String) -> String {
